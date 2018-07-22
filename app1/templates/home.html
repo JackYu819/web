@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<head>
+    <title>欢迎光临</title>
+</head>
+<body>
+欢迎光临, 自强学堂.
+
+<!-- 将其他网页包含进来 -->
+{% include '单选.html' %}
+{% block content %}
+<div> 默认内容, 所有继承自这个模板, 如果不覆盖就显示这里的默认内容.
+{% endblock %}
+
+{% include '个人信息.html' %}
+{% include '文本内容.html' %}
+
+{{string}}
+<br>
+
+{% for i in tt %}
+{{i}}<br>
+{% endfor %}
+
+遍历一个 字典 循环
+<br>
+{% for key, value in info.items %}
+{{key}}:{{value}}<br>
+{% endfor %}
+
+遍历一个 列表 循环
+<br>
+<ul>
+{% for item in List %}
+<li>{{item}}{% if not forloop.last %}, {% endif %}</li><br>
+{% endfor %}
+</ul>
+
+更改 url 名字
+{% url 'add2' arg arg2 as jiafa %}
+<a href = '{{jiafa}}'>链接到: {{jiafa}} </a>
+<br>
+
+{% if var >= 90 %}
+成绩优秀
+{% elif var >= 80 %}
+成绩良好
+{% elif var >= 70 %}
+成绩一般
+{% elif var >= 60 %}
+需要努力
+{% else %}
+差到极致
+{% endif %}
+
+<br>
+js模块
+<script type="text/javascript">
+var List = {{List}}
+alert(List)
+
+var List = {{List|safe}};
+var Dict = {{Dict|safe}};
+</script>
+</div>
+
+</body>
+
+
+
+</html>
